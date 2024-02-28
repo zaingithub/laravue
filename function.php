@@ -1,13 +1,11 @@
 <?php
 
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
-use GuzzleHttp\Client;
 
-function createTimestamps($dateString, $dateFormat='d-m-Y', $outputFormat='Y-m-d H:i:s')
+function createTimestamps($dateString, $inputFormat='d-m-Y', $outputFormat='Y-m-d H:i:s')
 {
-    $carbonDate = Carbon::createFromFormat($dateFormat, $dateString);
+    $carbonDate = Carbon::createFromFormat($inputFormat, $dateString);
     $formattedDate = $carbonDate->format($outputFormat);
     return $formattedDate;
 }
