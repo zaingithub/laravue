@@ -15,40 +15,14 @@ function customDate($dateString)
     return createTimestamps($dateString, 'Y-m-d H:i:s', 'd-m-Y');
 }
 
-function getItemValue($item, $column)
+function customModel($modelName)
 {
-    $keys = explode('.', $column);
-    $value = $item;
-    foreach ($keys as $key) {
-        $value = $value[$key] ?? null;
+    $baseModel  = 'App\\Models\\' . $modelName;
+    if (class_exists($baseModel)) {
+        $baseModel = app($modelName);
+        return $modelName;
     }
-    return $value;
-}
-
-function createExcelRowDocument($item)
-{
-    $defaultColumns = ["no_surat", "kode_surat", "order_date", "unitpln.name", "menerima", "normal_id", "quantity", "merk", "pelanggan", "pekerjaan.name", "kendaraan.name", "nopol", "movement.type", "vendor.name", "petugas.name", "penerima.name", "satpam.name", "pemberi.name"];
-    $outputItem = [];
-    foreach ($defaultColumns as $key => $column) {
-        $value = getItemValue($item, $column);
-        if( $column === 'order_date' && $value ) {
-            $value = createTimestamps($value, 'Y-m-d H:i:s', 'd-m-Y H:i:s');
-        }
-        $outputItem[] = $value;
-    }
-    return $outputItem;
-}
-function getModelIdName($jobName)
-{
-    $baseModel  = 'App\\Models\\';
-    $modelName  = $baseModel . ucfirst($jobName);
-    if (in_array($jobName, ['penerima', 'pemberi', 'petugas'])) {
-        $modelName .= "Surat";
-    }
-    if($jobName === 'unitpln') {
-        $modelName = $baseModel . 'UnitPln';
-    }
-    return $modelName;
+    return;
 }
 
 function getItemsByIndex($array, $startIndex, $endIndex) {
