@@ -3,12 +3,16 @@
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
-if (!function_exists('setupConfigIndonesia')) {
-    function setupConfigIndonesia()
+if (!function_exists('setupConfigLocale')) {
+    function setupConfigLocale($timezone = 'Asia/Jakarta', $locale = 'id', $fakerLocale = 'id_ID')
     {
-        config(['app.timezone' => 'Asia/Jakarta']);
-        config(['app.locale' => 'id']);
-        config(['app.faker_locale' => 'id_ID']);
+        try {
+            config(['app.timezone' => $timezone]);
+            config(['app.locale' => $locale]);
+            config(['app.faker_locale' => $fakerLocale]);
+            Carbon::setLocale($locale);
+        } catch (\Exception $e) {
+        }
     }
 }
 
