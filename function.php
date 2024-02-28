@@ -3,6 +3,15 @@
 use Illuminate\Support\Str;
 use Carbon\Carbon;
 
+if (!function_exists('setupConfigIndonesia')) {
+    function setupConfigIndonesia()
+    {
+        config(['app.timezone' => 'Asia/Jakarta']);
+        config(['app.locale' => 'id']);
+        config(['app.faker_locale' => 'id_ID']);
+    }
+}
+
 if (!function_exists('createTimestamps')) {
     function createTimestamps($dateString, $inputFormat = 'd-m-Y', $outputFormat = 'Y-m-d H:i:s')
     {
