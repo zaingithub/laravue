@@ -1,0 +1,21 @@
+{
+    "name": "zaingithub/laravue",
+    "description": "Master Helper Laravel",
+    "type": "library",
+	"homepage": "https://github.com/zaingithub/laravue",
+	"license": "MIT",
+    "authors": [
+        {
+            "name": "Masterzain",
+            "email": "zai.ads008@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.1"
+    },
+    "autoload": {
+        "files": [
+            "src/autoload.php"
+        ]
+    }
+}
